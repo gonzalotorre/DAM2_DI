@@ -3,7 +3,6 @@ package Agenda.GUI;
 import Agenda.GUI.TableModel.IngresoGastoTableModel;
 import Agenda.logica.LogicaNegocio;
 import java.awt.Color;
-import javax.swing.RowFilter;
 import javax.swing.table.TableRowSorter;
 
 /**
