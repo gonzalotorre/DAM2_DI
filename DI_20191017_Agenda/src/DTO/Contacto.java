@@ -43,12 +43,12 @@ public class Contacto {
         this.dni = dni;
     }
     
-    public String[] contactoString(){
+    /*public String[] contactoString(){
         String[] contacto = new String[3];
         contacto[0] = nombre;
         contacto[1] = apellidos;
         contacto[2] = dni;
         return contacto;
-    }
+    }*/
     
 }

@@ -29,7 +29,6 @@ public class ColoresPropertyEditorSupport extends PropertyEditorSupport {
 
     @Override
     public String getJavaInitializationString() {
-
         Color colorFondo = coloresPanel.getPropiedadSeleccionada().getColorFondo();
         Color colorTexto = coloresPanel.getPropiedadSeleccionada().getColorTexto();
         return "new Ejercicio2.ClaseDosColores(new java.awt.Color("
