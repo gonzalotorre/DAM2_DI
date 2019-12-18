@@ -3,6 +3,7 @@ package Agenda.GUI;
 import Agenda.GUI.TableModel.IngresoGastoTableModel;
 import Agenda.logica.LogicaNegocio;
 import java.awt.Color;
+import javax.swing.RowFilter;
 import javax.swing.table.TableRowSorter;
 
 /**
@@ -24,8 +25,8 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         TableRowSorter<IngresoGastoTableModel> elQueOrdena = new TableRowSorter<>(ingresoGastoTableModel);
         jTable1_Tabla.setRowSorter(elQueOrdena);
         //Solo deja meter los que empiecen por 0, es decir, si yo meto en la columna 2 algo que no empiece por 0 no me deja añadirlo
-        /*RowFilter<Object, Object> expresionRegular = RowFilter.regexFilter("1000", 2);
-        elQueOrdena.setRowFilter(expresionRegular);*/
+        RowFilter<Object, Object> expresionRegular = RowFilter.regexFilter("1000", 2);
+        elQueOrdena.setRowFilter(expresionRegular);
     }
 
     /**

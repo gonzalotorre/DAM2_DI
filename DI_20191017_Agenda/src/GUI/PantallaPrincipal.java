@@ -11,6 +11,8 @@ import javax.swing.table.TableRowSorter;
  */
 public class PantallaPrincipal extends javax.swing.JFrame {
 
+    //private TableRowSorter<ContactosTableModel> sorter;
+    
     /**
      * Creates new form PantallaPrincipal
      */
@@ -31,7 +33,9 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableContactos = new javax.swing.JTable();
-        jLabelMensajeError = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jTextFieldFiltro = new javax.swing.JTextField();
+        jButtonFiltrar = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenuAlta = new javax.swing.JMenu();
         jMenuBaja = new javax.swing.JMenu();
@@ -51,10 +55,14 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTableContactos);
 
-        getContentPane().add(jScrollPane1, java.awt.BorderLayout.CENTER);
+        jLabel1.setText("Filtrar por:");
 
-        jLabelMensajeError.setText(" ");
-        getContentPane().add(jLabelMensajeError, java.awt.BorderLayout.PAGE_END);
+        jButtonFiltrar.setText("Filtrar");
+        jButtonFiltrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonFiltrarMouseClicked(evt);
+            }
+        });
 
         jMenuAlta.setText("Alta");
         jMenuAlta.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -74,22 +82,52 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
         setJMenuBar(jMenuBar1);
 
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 379, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButtonFiltrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addComponent(jTextFieldFiltro)))
+                .addContainerGap())
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jTextFieldFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonFiltrar)
+                .addGap(0, 11, Short.MAX_VALUE))
+        );
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuAltaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuAltaMouseClicked
-        jLabelMensajeError.setText("");
+        //jLabelMensajeError.setText("");
         PantallaDarAlta alta = new PantallaDarAlta(this, true);
         alta.setVisible(true);
         refrescar();
     }//GEN-LAST:event_jMenuAltaMouseClicked
 
     private void jMenuBajaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuBajaMouseClicked
-        jLabelMensajeError.setText("");
+        //jLabelMensajeError.setText("");
         int fila = jTableContactos.getSelectedRow();
         int[] variasFilas = new int[jTableContactos.getSelectedRows().length];
         if (fila == -1) {
-            jLabelMensajeError.setText("Error: debes seleccionar una fila para poder dar de baja.");
+            //jLabelMensajeError.setText("Error: debes seleccionar una fila para poder dar de baja.");
         } else {
             int cont = 0;
             for (int fila2 : variasFilas) {
@@ -99,6 +137,11 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_jMenuBajaMouseClicked
+
+    private void jButtonFiltrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonFiltrarMouseClicked
+        /*RowFilter<ContactosTableModel, Integer> filtro = RowFilter.regexFilter(jTextFieldFiltro.getText(), 0);
+        sorter.setRowFilter(filtro);*/
+    }//GEN-LAST:event_jButtonFiltrarMouseClicked
 
     /**
      * @param args the command line arguments
@@ -145,6 +188,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jTableContactos.setModel(ctm);
         //Si no hacemos el punto de ordenar la tabla se podría hacer así:
         //jTableContactos.setModel(new ContactosTableModel(LogicaNegocio.getListaContactos());
+        //Ya que para crear el objeto RowSorter necesitamos el objeto TableModel
         //Para ordenar por campos una tabla:
         TableRowSorter<ContactosTableModel> sorter = new TableRowSorter<>(ctm);
         jTableContactos.setRowSorter(sorter);
@@ -157,11 +201,13 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabelMensajeError;
+    private javax.swing.JButton jButtonFiltrar;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenuAlta;
     private javax.swing.JMenu jMenuBaja;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableContactos;
+    private javax.swing.JTextField jTextFieldFiltro;
     // End of variables declaration//GEN-END:variables
 }
