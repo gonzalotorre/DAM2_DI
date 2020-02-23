@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Agenda_ContactosMailsTelefonos" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="90b69a9e-d15a-4d88-9c12-c66820927645">
+	<property name="ireport.zoom" value="0.9090909090909091"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\Users\\gonza\\Documents\\ProyectosNetBeans\\iReport\\"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT * FROM CONTACTOS]]>
+	</queryString>
+	<field name="ID" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NOMBRE" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CIUDAD" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="SUBREPORT_COUNT_CORREO" class="java.lang.Integer" resetType="Column" calculation="System"/>
+	<variable name="SUBREPORT_COUNT_TLF" class="java.lang.Integer" resetType="Column" calculation="System"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="39" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="39" forecolor="#00CC00" uuid="85111f3a-2b50-4a2c-8080-08b71a0c8514"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="28" isBold="true" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[Agenda]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="185" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="555" height="55" backcolor="#0033FF" uuid="aebaa6a3-c0fc-42b2-ba09-3b1887519188"/>
+			</rectangle>
+			<subreport>
+				<reportElement positionType="Float" x="0" y="55" width="276" height="100" uuid="feb50845-db12-4970-809b-83337cca30b9"/>
+				<subreportParameter name="ID_CONTACTO">
+					<subreportParameterExpression><![CDATA[$F{ID}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<returnValue subreportVariable="REPORT_COUNT" toVariable="SUBREPORT_COUNT_CORREO"/>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "Agenda_ContactosMailsTelefonos_subreport1.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement positionType="Float" x="276" y="55" width="279" height="100" uuid="f8f42c0d-4ecd-4905-84fc-74e1df55ef97"/>
+				<subreportParameter name="ID_CONTACTO">
+					<subreportParameterExpression><![CDATA[$F{ID}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<returnValue subreportVariable="REPORT_COUNT" toVariable="SUBREPORT_COUNT_TLF"/>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "Agenda_ContactosMailsTelefonos_subreport2.jasper"]]></subreportExpression>
+			</subreport>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="402" y="0" width="153" height="55" forecolor="#000000" backcolor="#FFFFFF" uuid="23542b97-b538-4b2c-9c83-939baf5f2f6f"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="SansSerif" size="20" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CIUDAD}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Transparent" x="276" y="0" width="126" height="55" forecolor="#000000" backcolor="#FFFFFF" uuid="600b6fc0-1f9e-400c-a613-c483c41954d2"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="SansSerif" size="22" isBold="true" isItalic="true" isUnderline="true" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[CIUDAD:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="123" y="0" width="153" height="55" uuid="93952869-1738-4706-b320-f13e8e1667b6"/>
+				<textElement verticalAlignment="Middle">
+					<font size="20"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NOMBRE}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Transparent" x="0" y="0" width="123" height="55" forecolor="#000000" backcolor="#FFFFFF" uuid="89c41518-7d35-438f-9957-86c657c92333"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="SansSerif" size="22" isBold="true" isItalic="true" isUnderline="true" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[NOMBRE:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="0" y="165" width="105" height="20" uuid="fb44e98b-92d8-4a3a-94bb-4f49f8db1d1e"/>
+				<text><![CDATA[NÚMERO CORREOS:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="276" y="165" width="126" height="20" uuid="dcfb04e0-a958-416c-9c05-f8e77c254281"/>
+				<text><![CDATA[NÚMERO TELÉFONOS]]></text>
+			</staticText>
+			<textField evaluationTime="Band">
+				<reportElement positionType="Float" x="105" y="165" width="171" height="20" uuid="5613a69b-da89-4801-beeb-74338d1ddabb"/>
+				<textFieldExpression><![CDATA[$V{SUBREPORT_COUNT_CORREO}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Band">
+				<reportElement positionType="Float" x="402" y="165" width="153" height="20" uuid="8be75c65-fbae-4612-b888-45b859ecf326"/>
+				<textFieldExpression><![CDATA[$V{SUBREPORT_COUNT_TLF}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement positionType="Float" x="0" y="160" width="555" height="3" uuid="e723d677-a1a7-4963-aeb0-df1f60db63eb"/>
+			</line>
+		</band>
+	</detail>
+</jasperReport>

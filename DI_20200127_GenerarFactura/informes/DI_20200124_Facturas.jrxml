@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="DI_20200124_Facturas" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="235d0e6a-4773-4be5-be80-8e98434088c8">
+	<property name="ireport.zoom" value="1.1"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="dni" class="java.lang.String"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\Users\\gonza\\Documents\\ProyectosNetBeans\\iReport\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="IDFACTURA" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT * FROM CLIENTES C INNER JOIN CABECERA_FACTURA CF ON C.DNI = CF.DNI WHERE C.DNI= $P{dni} AND CF.ID_FACTURA = $P{IDFACTURA}]]>
+	</queryString>
+	<field name="DNI" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NOMBRE" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="APELLIDOS" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CALLE" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="LOCALIDAD" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PROVINCIA" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CP" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="TELEFONO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ID_FACTURA" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="FECHA" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="PRECIO_TOTAL" class="java.math.BigDecimal" calculation="System"/>
+	<group name="fact">
+		<groupExpression><![CDATA[$F{ID_FACTURA}]]></groupExpression>
+		<groupHeader>
+			<band height="74">
+				<staticText>
+					<reportElement positionType="Float" x="0" y="10" width="100" height="20" uuid="9cb79b5e-e183-436f-b8c6-4364359969cc"/>
+					<textElement verticalAlignment="Middle">
+						<font size="13"/>
+					</textElement>
+					<text><![CDATA[Premier League]]></text>
+				</staticText>
+				<textField>
+					<reportElement positionType="Float" x="143" y="30" width="249" height="20" uuid="dc94021f-4c38-4015-8be8-41cea42f821e"/>
+					<textElement verticalAlignment="Middle">
+						<font size="13"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{CALLE} + ",  " + $F{LOCALIDAD} + ",  " + $F{PROVINCIA} + ",  " + $F{CP}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement positionType="Float" x="143" y="10" width="249" height="20" uuid="a18b11c2-699d-4502-88ce-c23544796fee"/>
+					<textElement verticalAlignment="Middle">
+						<font size="13"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{NOMBRE} + " " + $F{APELLIDOS}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement positionType="Float" x="417" y="10" width="138" height="20" uuid="15430b77-53fd-43c8-99c3-f256ba508dfd"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font size="13"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Fecha: " + $F{FECHA}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="417" y="30" width="138" height="20" uuid="00dc7f3c-c351-4516-a630-bbd12abc07a7"/>
+					<textElement>
+						<font size="13"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{ID_FACTURA}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement positionType="Float" x="143" y="50" width="100" height="20" uuid="ee20ea91-2e50-47bc-b1bc-f0bd4f323e61"/>
+					<textElement verticalAlignment="Middle">
+						<font size="13"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{TELEFONO}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="0" y="0" width="555" height="1" uuid="628b8247-a667-47c3-85d2-ba4f39276ce4"/>
+				</line>
+			</band>
+		</groupHeader>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="120" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="555" height="120" backcolor="#CCCCCC" uuid="c2fe92fe-02e9-4ef4-9a28-8d7b8d22a47a"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="0" width="439" height="120" forecolor="#0000FF" uuid="73e3ff10-c1ce-4844-9d15-e10dbe208e14"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Calibri Light" size="80" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Factura]]></text>
+			</staticText>
+			<image>
+				<reportElement x="439" y="10" width="116" height="100" uuid="864442fd-5c35-4760-b42c-d708b1fe719c"/>
+				<imageExpression><![CDATA["C:\\Users\\gonza\\Documents\\ProyectosNetBeans\\iReport\\índice.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="39" splitType="Stretch">
+			<staticText>
+				<reportElement x="143" y="12" width="249" height="27" uuid="1d0ea350-60ce-4d7b-9656-bb1c8ab5675c"/>
+				<textElement verticalAlignment="Middle">
+					<font size="16" isBold="true" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[Cliente]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="12" width="100" height="27" uuid="1a5afc25-16fd-44f6-9b18-44ca5a0dd440"/>
+				<textElement verticalAlignment="Middle">
+					<font size="16" isBold="true" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[Empresa]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="417" y="13" width="122" height="26" uuid="b18911cc-2735-4425-b691-3704db830e5b"/>
+				<textElement verticalAlignment="Middle">
+					<font size="16" isBold="true" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[Datos]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="60" splitType="Stretch">
+			<subreport>
+				<reportElement x="0" y="0" width="555" height="60" uuid="81086a5e-f94d-4287-9a3b-080adca6df3a"/>
+				<subreportParameter name="IDFACTURA">
+					<subreportParameterExpression><![CDATA[$F{ID_FACTURA}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["C:\\Users\\gonza\\Documents\\ProyectosNetBeans\\iReport\\DI_20200124_Facturas_Subreport.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+</jasperReport>

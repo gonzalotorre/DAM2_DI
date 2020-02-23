@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="DI_20200124_Facturas_Subreport" pageWidth="555" pageHeight="842" columnWidth="515" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6da90599-4c04-4464-9da2-55dc6b3ca952">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="IDFACTURA" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT PRODUCTO, PRECIO, CANTIDAD, (PRECIO * CANTIDAD) AS TOTAL FROM PRODUCTOS P INNER JOIN DETALLE_FACTURA DF ON P.ID_PRODUCTO = DF.ID_PRODUCTO WHERE ID_FACTURA = $P{IDFACTURA}]]>
+	</queryString>
+	<field name="PRODUCTO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PRECIO" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CANTIDAD" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="TOTAL" class="java.math.BigDecimal"/>
+	<variable name="TOTAL" class="java.lang.Float" calculation="Sum">
+		<variableExpression><![CDATA[$F{TOTAL}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<columnHeader>
+		<band height="30" splitType="Stretch">
+			<rectangle>
+				<reportElement positionType="Float" x="0" y="0" width="515" height="29" backcolor="#0000FF" uuid="9c9710f4-42b4-48e9-abcb-fa4428f62ae9"/>
+			</rectangle>
+			<staticText>
+				<reportElement positionType="Float" x="0" y="0" width="127" height="29" uuid="97391f01-1948-403c-8a41-a4a131898971"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PRODUCTO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="142" y="1" width="116" height="29" uuid="37d55d44-aec6-4f57-ab23-2c7ea02c8c29"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PRECIO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="272" y="1" width="116" height="29" uuid="2d76420f-aee8-44bf-8ebc-82c4d4335cd3"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CANTIDAD]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="399" y="1" width="116" height="29" uuid="871f36be-8f89-4c92-95a9-1d39c4bfe081"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SUBTOTAL]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="24" splitType="Stretch">
+			<textField>
+				<reportElement positionType="Float" x="0" y="0" width="127" height="24" uuid="32563d0e-e30f-42ef-b1fb-3a1e17699930"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PRODUCTO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="399" y="0" width="116" height="24" uuid="3c012997-728b-4c67-b12c-aea6d8db28aa"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TOTAL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="272" y="0" width="116" height="24" uuid="908ab378-5342-49e8-9369-3b44e4e1fa2f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CANTIDAD}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="142" y="0" width="116" height="24" uuid="d519c238-4310-4a31-bb4b-248ba4047c77"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PRECIO}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="26">
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="399" y="0" width="116" height="26" forecolor="#000000" backcolor="#FFFFFF" uuid="7e9bbae6-6cbf-4a9e-a68d-8a66cfdb0e55"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="SansSerif" size="16" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TOTAL}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="272" y="0" width="243" height="1" uuid="4370ed48-638b-4048-8bfb-380f1e2c8789"/>
+			</line>
+			<staticText>
+				<reportElement mode="Transparent" x="272" y="0" width="127" height="26" forecolor="#000000" backcolor="#FFFFFF" uuid="95074a61-c5c4-4ea9-b127-9fd058ca47ab"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="SansSerif" size="16" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Total Factura:]]></text>
+			</staticText>
+		</band>
+	</columnFooter>
+</jasperReport>
